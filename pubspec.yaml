@@ -1,0 +1,33 @@
+name: portfolio_web
+description: Abdelrahman Atef Darwish — Flutter Developer portfolio.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+  flutter: '>=3.27.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Typography — Google Fonts (Bricolage Grotesque, Inter Tight, JetBrains Mono)
+  google_fonts: ^6.2.1
+
+  # Iconography
+  phosphor_flutter: ^2.1.0
+
+  # Reveal-on-scroll animations + visibility detection
+  flutter_animate: ^4.5.0
+  visibility_detector: ^0.4.0+2
+
+  # Email / phone / external link handling in the contact section
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
