@@ -43,7 +43,7 @@ class CvData {
   // --- Headline metrics (for the home stat strip) --------------------------
   static const List<({String value, String label})> headlineStats = [
     (value: '3+', label: 'YEARS PRODUCTION'),
-    (value: '4', label: 'PUBLISHED APPS'),
+    (value: '5', label: 'PUBLISHED APPS'),
   ];
 
   // --- Experience -----------------------------------------------------------
@@ -51,7 +51,7 @@ class CvData {
     Experience(
       company: 'Croco IT',
       role: 'Flutter Developer',
-      period: 'Jan 2025 — Present',
+      period: 'Feb 2025 — Present',
       isCurrent: true,
       bullets: [
         'Worked on 4 production apps across e-commerce, healthcare, and HR; delivered features end-to-end from architecture and UI to App Store and Google Play release.',
@@ -64,7 +64,7 @@ class CvData {
     Experience(
       company: 'Freelance Yard',
       role: 'Flutter Developer · Freelance',
-      period: 'Sep 2024 — Dec 2024',
+      period: 'Jun 2024 — Jan 2025',
       bullets: [
         'Built personal Flutter projects applying Bloc state management, Clean Architecture, local storage, and REST API integration.',
         'Developed a To-Do App (Bloc + SQFlite) and a Balanced Meal Planner (REST API via Dio with a clean UI).',
@@ -73,7 +73,7 @@ class CvData {
     Experience(
       company: 'Rqmmyat',
       role: 'Flutter Developer',
-      period: 'Jan 2023 — Aug 2024',
+      period: 'Jan 2024 — May 2024',
       bullets: [
         'Worked on two Flutter projects: Valencia (restaurant task management) and HR Rqmmyat (internal HR system).',
         'Designed UI screens, fixed business logic, and connected API integrations to link Admin, Manager, and Staff workflows in both apps.',
@@ -89,7 +89,7 @@ class CvData {
     Experience(
       company: 'GDSC Future Academy',
       role: 'Flutter Development Instructor',
-      period: 'Jun 2021 — Sep 2022',
+      period: 'Jun 2021 — May 2023',
       bullets: [
         'Led and mentored technical workshops and hackathons for students learning Flutter.',
         'Designed and developed mobile-app projects used as teaching material across the chapter.',
