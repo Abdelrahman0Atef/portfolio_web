@@ -121,7 +121,7 @@ class _LogoState extends State<_Logo> {
                 ),
                 child: ClipOval(
                   child: Image.asset(
-                    'assets/images/profile.jpeg',
+                    'assets/images/MyPic/01-profile.jpeg',
                     fit: BoxFit.cover,
                     errorBuilder: (_, __, ___) => Container(
                       color: AppColors.accent,

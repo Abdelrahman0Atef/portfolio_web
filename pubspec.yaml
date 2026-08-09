@@ -30,4 +30,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
+    - assets/images/MyPic/
+    - assets/images/almasryIntegration/
+    - assets/images/almasryPharmacy/
+    - assets/images/fozdoc/
+    - assets/images/hrMobic/

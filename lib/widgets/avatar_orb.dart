@@ -14,7 +14,7 @@ class AvatarOrb extends StatefulWidget {
   const AvatarOrb({
     super.key,
     this.size = 320,
-    this.imagePath = 'assets/images/profile.jpeg',
+    this.imagePath = 'assets/images/MyPic/01-profile.jpeg',
   });
 
   @override
@@ -220,7 +220,7 @@ class AvatarCredit extends StatelessWidget {
   const AvatarCredit({
     super.key,
     this.size = 44,
-    this.imagePath = 'assets/images/profile.jpeg',
+    this.imagePath = 'assets/images/MyPic/01-profile.jpeg',
     required this.name,
     required this.role,
   });
