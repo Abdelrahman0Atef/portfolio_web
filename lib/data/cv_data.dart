@@ -38,7 +38,7 @@ class CvData {
 
   /// Where the "Download CV" button points.
   static const String cvUrl =
-      'https://drive.google.com/uc?export=download&id=1jKHv0M_WHlux8aD5D9K4PppiyiaTr40E';
+      'https://drive.google.com/uc?export=download&id=1uT7kmoSHRzlqHURjLEmBE6cAJFgjdf1e';
 
   // --- Headline metrics (for the home stat strip) --------------------------
   static const List<({String value, String label})> headlineStats = [
