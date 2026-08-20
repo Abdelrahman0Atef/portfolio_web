@@ -3,7 +3,6 @@ import '../models/experience.dart';
 import '../models/project.dart';
 import '../models/skill_category.dart';
 
-/// Single source of truth for every piece of CV content rendered by the UI.
 class CvData {
   const CvData._();
 
@@ -14,18 +13,15 @@ class CvData {
   static const String name = 'Abdelrahman Atef Darwish';
   static const String shortName = 'Abdelrahman A. Darwish';
 
-  /// Matches the CV headline exactly. Recruiters cross-check the two.
   static const String role = 'Mobile Developer (Flutter)';
   static const String location = 'Cairo, Egypt';
 
-  /// Short hook for the hero section. One idea, no metrics.
   static const String tagline =
       'I ship Flutter apps that real people use every day — currently across '
       'e-commerce, healthcare, and enterprise HR.';
 
-  /// Long-form summary. Mirrors the PDF CV summary so the two never conflict.
   static const String summary =
-      'Flutter developer who has shipped six production apps on Android and '
+      'Flutter developer who has shipped seven production apps on Android and '
       'iOS across e-commerce, healthcare, and enterprise HR, including a live '
       'app serving 10,000+ users. Works across the security layer — JWT with '
       'token refresh, OTP verification, HMAC-signed requests, encrypted token '
@@ -58,7 +54,7 @@ class CvData {
   // ---------------------------------------------------------------------------
 
   static const List<({String value, String label})> headlineStats = [
-    (value: '6', label: 'PRODUCTION APPS'),
+    (value: '7', label: 'PRODUCTION APPS'),
     (value: '3', label: 'LIVE ON BOTH STORES'),
     (value: '10K+', label: 'USERS SERVED'),
   ];
@@ -130,6 +126,8 @@ class CvData {
             'both apps.',
         'Diagnosed and fixed a critical data-retrieval failure in Valencia that '
             'was blocking core functionality for every user role.',
+        'Added widget tests for role-based screens to catch regressions before '
+            'they reached QA.',
       ],
     ),
   ];
@@ -137,6 +135,7 @@ class CvData {
   // ---------------------------------------------------------------------------
   // Teaching & community
   // ---------------------------------------------------------------------------
+
   static const List<Experience> volunteering = [
     Experience(
       company: 'GDSC Future Academy',
@@ -158,12 +157,13 @@ class CvData {
   // ---------------------------------------------------------------------------
   // Projects
   // ---------------------------------------------------------------------------
+
   static const List<Project> projects = [
     Project(
       name: 'AlMasry Integration',
       tagline: 'Three marketplaces, one dashboard. Built solo, end to end.',
       category: 'E-commerce · Internal tooling',
-      role: 'Sole developer — design to release',
+      role: 'Solo developer',
       image: 'assets/images/almasryIntegration/01-dashboard-order-status.png',
       gallery: [
         'assets/images/almasryIntegration/02-sync-orders-erp.png',
@@ -293,7 +293,7 @@ class CvData {
     ),
     Project(
       name: 'FozDoc — Skin Analysis',
-      tagline: 'ML output turned into something people can act on.',
+      tagline: 'ML skin analysis with a guided capture flow.',
       category: 'Healthcare · ML',
       role: 'Feature owner',
       platforms: ProjectPlatforms(
@@ -313,16 +313,83 @@ class CvData {
         'assets/images/fozdoc/07-settings.png',
       ],
       description:
-          'A skin-analysis app that translates raw ML model output into a '
-          'personalised skincare routine a user can actually follow.',
-      tech: ['Flutter', 'Cubit', 'REST', 'ML integration', 'Adaptive UI'],
+          'A consumer skin-analysis app that turns raw ML model output into a '
+          'personalised skincare routine, live on both stores. The analysis is '
+          'only as good as the photo, so most of the engineering went into the '
+          'capture flow rather than the report.',
+      tech: [
+        'Flutter',
+        'Cubit',
+        'REST',
+        'ML Kit Face Detection',
+        'Camera',
+        'Adaptive UI',
+      ],
       highlights: [
+        'Built the guided capture system on top of google_mlkit_face_detection: '
+            'the shutter stays locked until face framing, distance, and '
+            'lighting meet the model\'s input requirements, then a countdown '
+            'runs with per-second audio cues and a capture confirmation tone, '
+            'so the user is never guessing whether the shot registered.',
+        'Built two capture modes — a single front-facing shot, or a '
+            'three-angle sequence (front, left, right). The dermatologists '
+            'annotating the training data reported the three-angle input '
+            'produced the more accurate analysis, so it became the '
+            'recommended path.',
         'Designed and built the Skin Health Report screen, turning model output '
-            'into a readable routine rather than a score.',
-        'Integrated the ML skin-analysis pipeline with the Flutter frontend, '
-            'including the photo capture guide that improves input quality.',
+            'into a routine a person can follow rather than a score they have '
+            'to interpret.',
         'Built the personalisation onboarding flow covering skin basics, '
             'lifestyle, and budget.',
+      ],
+    ),
+    Project(
+      name: 'FozDoc Clinic',
+      tagline: 'The tablet build. Same model, a completely different user.',
+      category: 'Healthcare · ML · Clinical',
+      role: 'Solo developer',
+      image: 'assets/images/fozdocClinic/01-capture-conditions.png',
+      gallery: [
+        'assets/images/fozdocClinic/02-capture-countdown.png',
+        'assets/images/fozdocClinic/03-rear-camera-assisted.png',
+        'assets/images/fozdocClinic/04-three-angle-sequence.png',
+        'assets/images/fozdocClinic/05-skin-report-wide.png',
+        'assets/images/fozdocClinic/06-product-recommendations.png',
+      ],
+      description:
+          'A separate tablet build of FozDoc for dermatologists, cosmetic '
+          'clinics, and pharmacies — where a practitioner photographs the '
+          'patient instead of the patient photographing themselves. Owned '
+          'alone, on its own release cycle, and distributed directly rather '
+          'than through the stores.',
+      tech: [
+        'Flutter',
+        'Cubit',
+        'REST',
+        'ML Kit Face Detection',
+        'Camera',
+        'Tablet Layouts',
+      ],
+      highlights: [
+        'Sole developer on the build: took the clinical variant from scoping '
+            'through to a release-ready tablet app on its own cycle, separate '
+            'from the consumer app on the stores.',
+        'Reworked capture for a two-person flow — the practitioner frames the '
+            'shot and triggers the shutter manually once it looks right, '
+            'rather than the subject waiting on an automatic timer they '
+            'cannot see.',
+        'Enabled the rear camera alongside the front one, since a practitioner '
+            'photographing a patient reaches for the rear camera every time. '
+            'The consumer app never needed it.',
+        'Made the three-angle sequence (front, left, right) the only capture '
+            'path here — a clinical result has to be the most accurate one '
+            'available, so the faster single-shot mode was deliberately left '
+            'out.',
+        'Built the layout for tablet rather than scaling the phone UI, so the '
+            'capture preview and guidance stay usable at arm\'s length across '
+            'a counter or examination chair.',
+        'Structured the build to support per-clinic customisation ahead of '
+            'first deployment.',
       ],
     ),
     Project(
@@ -365,6 +432,7 @@ class CvData {
   // ---------------------------------------------------------------------------
   // Skills
   // ---------------------------------------------------------------------------
+
   static const List<SkillCategory> skillCategories = [
     SkillCategory(
       title: 'Languages',
@@ -411,6 +479,15 @@ class CvData {
     SkillCategory(
       title: 'APIs & Networking',
       skills: ['REST', 'GraphQL', 'Dio', 'Interceptors', 'Pagination'],
+    ),
+    SkillCategory(
+      title: 'ML & Device',
+      skills: [
+        'Google ML Kit',
+        'Face Detection',
+        'Camera Pipelines',
+        'ML Model Integration',
+      ],
     ),
     SkillCategory(
       title: 'Backend, Cloud & Storage',
