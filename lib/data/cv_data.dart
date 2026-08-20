@@ -47,7 +47,7 @@ class CvData {
 
   /// Where the "Download CV" button points.
   static const String cvUrl =
-      'https://drive.google.com/uc?export=download&id=1XJVbxY543_CdHaV79C42P-OBFU7TkFh8';
+      'https://drive.google.com/uc?export=download&id=1X6tANC2TdR3ifMGOntovltHPRuoDd2Aa';
 
   // ---------------------------------------------------------------------------
   // Headline metrics
@@ -308,9 +308,12 @@ class CvData {
         'assets/images/fozdoc/02-personalize-basics.png',
         'assets/images/fozdoc/03-personalize-lifestyle-budget.png',
         'assets/images/fozdoc/04-photo-guide.png',
-        'assets/images/fozdoc/05-personalized-care-routine.png',
-        'assets/images/fozdoc/06-shop-products.png',
-        'assets/images/fozdoc/07-settings.png',
+        'assets/images/fozdoc/05-scan-mode.png',
+        'assets/images/fozdoc/06-capture-countdown.png',
+        'assets/images/fozdoc/07-detected-zones.png',
+        'assets/images/fozdoc/08-personalized-care-routine.png',
+        'assets/images/fozdoc/09-shop-products.png',
+        'assets/images/fozdoc/10-settings.png',
       ],
       description:
           'A consumer skin-analysis app that turns raw ML model output into a '
