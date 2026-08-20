@@ -18,6 +18,14 @@ Future<void> _openExternal(String url) async {
   }
 }
 
+String? _badgeLabelFor(String role) {
+  final r = role.toLowerCase();
+  if (r.contains('solo') || r.contains('sole')) return 'SOLO DEVELOPER';
+  if (r.contains('owner')) return 'FEATURE OWNER';
+  if (r.contains('lead')) return 'FEATURE LEAD';
+  return null;
+}
+
 /// Project card.
 class ProjectCard extends StatefulWidget {
   final Project project;
@@ -92,11 +100,11 @@ class _ProjectCardState extends State<ProjectCard> {
                           top: Radius.circular(17)),
                     ),
                     // Highlight badge for "Solo developer" projects.
-                    if (p.role.toLowerCase().contains('solo'))
-                      const Positioned(
+                    if (_badgeLabelFor(p.role) case final label?)
+                      Positioned(
                         top: 12,
                         left: 12,
-                        child: _RoleBadge(label: 'SOLO DEVELOPER'),
+                        child: _RoleBadge(label: label),
                       ),
                     // Store badges on the opposite corner — tappable when URLs are present.
                     if (p.platforms.hasAny &&
