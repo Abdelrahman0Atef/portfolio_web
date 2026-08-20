@@ -3,36 +3,49 @@ import '../models/experience.dart';
 import '../models/project.dart';
 import '../models/skill_category.dart';
 
-/// All of Abdelrahman's CV content, structured for the UI.
+/// Single source of truth for every piece of CV content rendered by the UI.
 class CvData {
-  CvData._();
+  const CvData._();
 
-  // --- Identity -------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // Identity
+  // ---------------------------------------------------------------------------
+
   static const String name = 'Abdelrahman Atef Darwish';
   static const String shortName = 'Abdelrahman A. Darwish';
-  static const String role = 'Flutter Developer';
+
+  /// Matches the CV headline exactly. Recruiters cross-check the two.
+  static const String role = 'Mobile Developer (Flutter)';
   static const String location = 'Cairo, Egypt';
 
+  /// Short hook for the hero section. One idea, no metrics.
   static const String tagline =
-      'I build cross-platform Flutter apps that ship to production — '
-      'end-to-end, from architecture to App Store. Currently across '
+      'I ship Flutter apps that real people use every day — currently across '
       'e-commerce, healthcare, and enterprise HR.';
 
+  /// Long-form summary. Mirrors the PDF CV summary so the two never conflict.
   static const String summary =
-      'Flutter developer with 3+ years of production experience owning four '
-      'cross-platform apps end-to-end — from architecture to App Store and '
-      'Google Play release across e-commerce, healthcare, and enterprise HR. '
-      'Delivered measurable impact: 20% crash rate reduction, 100% faster '
-      'deployments via Shorebird OTA, and 15+ critical bugs resolved in live '
-      'production. Proficient in Dart, Bloc/Cubit, Clean Architecture, '
-      'GraphQL, and CI/CD pipelines.';
+      'Flutter developer who has shipped six production apps on Android and '
+      'iOS across e-commerce, healthcare, and enterprise HR, including a live '
+      'app serving 10,000+ users. Works across the security layer — JWT with '
+      'token refresh, OTP verification, HMAC-signed requests, encrypted token '
+      'storage, and biometric sign-in — and on the performance side, cutting '
+      'cold start from 5s to 2s and shipping production hotfixes in minutes '
+      'with Shorebird OTA. Comfortable migrating live codebases: REST to '
+      'GraphQL, and setState to Bloc/Cubit, without breaking what is already '
+      'in production.';
 
-  // --- Contact --------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // Contact
+  // ---------------------------------------------------------------------------
+
   static const String email = 'abdelrahman.a.darwish.3@gmail.com';
   static const String phone = '+20 101 173 0253';
+
   static const String linkedin = 'abdelrahmanatefdarwish';
   static const String linkedinUrl =
       'https://www.linkedin.com/in/abdelrahmanatefdarwish/';
+
   static const String github = 'Abdelrahman0Atef';
   static const String githubUrl = 'https://github.com/Abdelrahman0Atef';
 
@@ -40,25 +53,53 @@ class CvData {
   static const String cvUrl =
       'https://drive.google.com/uc?export=download&id=1XJVbxY543_CdHaV79C42P-OBFU7TkFh8';
 
-  // --- Headline metrics (for the home stat strip) --------------------------
+  // ---------------------------------------------------------------------------
+  // Headline metrics
+  // ---------------------------------------------------------------------------
+
   static const List<({String value, String label})> headlineStats = [
-    (value: '3+', label: 'YEARS PRODUCTION'),
-    (value: '5', label: 'PUBLISHED APPS'),
+    (value: '6', label: 'PRODUCTION APPS'),
+    (value: '3', label: 'LIVE ON BOTH STORES'),
+    (value: '10K+', label: 'USERS SERVED'),
   ];
 
-  // --- Experience -----------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // Experience
+  // ---------------------------------------------------------------------------
+
   static const List<Experience> experiences = [
     Experience(
       company: 'Croco IT',
-      role: 'Flutter Developer',
+      role: 'Mobile Developer (Flutter)',
       period: 'Feb 2025 — Present',
       isCurrent: true,
       bullets: [
-        'Worked on 4 production apps across e-commerce, healthcare, and HR; delivered features end-to-end from architecture and UI to App Store and Google Play release.',
-        'Built and connected REST and GraphQL APIs, implemented JWT authentication with token refresh, and designed Dio interceptors for connectivity and automatic token renewal.',
-        'Designed UI screens independently using Google\'s Stitch AI, filling the UI/UX role and delivering features 30%+ faster across multiple projects.',
-        'Integrated Shorebird OTA updates, reducing deployment time by 100% and enabling instant production patches without full store resubmission.',
-        'Resolved 15+ critical bugs across production apps, reducing crash rates by 20%, and handled an Apple App Store rejection by working directly with Apple\'s review team.',
+        'Deliver features end-to-end across four production apps in e-commerce, '
+            'healthcare, and enterprise HR — from architecture through App Store '
+            'and Google Play release.',
+        'Migrated the checkout and ordering module of AlMasry Pharmacy '
+            '(10,000+ active users) from REST to GraphQL on a live app, cutting '
+            'over-fetching while keeping the flow working through the cutover.',
+        'Built the mobile security layer: JWT authentication with automatic '
+            'token refresh, OTP verification against the backend, HMAC-signed '
+            'requests, encrypted token storage with flutter_secure_storage, and '
+            'Face ID sign-in via local_auth.',
+        'Built and maintained REST layers with Dio, including custom '
+            'interceptors for token renewal, retry, cookies, and connectivity, '
+            'and integrated third-party SDKs.',
+        'Integrated Shorebird OTA, removing the 1–3 day store review cycle for '
+            'hotfixes and shipping production patches to Android and iOS in '
+            'minutes.',
+        'Reduced cold start from 5s to 2s through lazy loading and pagination, '
+            'and migrated 10+ screens across two production apps from setState '
+            'to Bloc/Cubit — crash rate dropped roughly 20% afterwards, tracked '
+            'in Firebase Crashlytics and Sentry.',
+        'Resolved an Apple App Store rejection by working directly with the '
+            'review team, unblocking the release.',
+        'Review teammates\' pull requests, onboard and mentor a new intern, and '
+            'work daily with QA and Product in an Agile team.',
+        'Design UI screens independently using Google Stitch when no designer '
+            'is assigned, shortening the handoff loop on smaller features.',
       ],
     ),
     Experience(
@@ -66,8 +107,13 @@ class CvData {
       role: 'Flutter Developer · Freelance',
       period: 'Jun 2024 — Jan 2025',
       bullets: [
-        'Built personal Flutter projects applying Bloc state management, Clean Architecture, local storage, and REST API integration.',
-        'Developed a To-Do App (Bloc + SQFlite) and a Balanced Meal Planner (REST API via Dio with a clean UI).',
+        'Delivered two Flutter apps for a client as sole developer, from '
+            'architecture through handover — Bloc, Clean Architecture, REST '
+            'integration, and local storage.',
+        'Built complex animated UI from the client\'s designs and integrated '
+            'Firebase Cloud Messaging for push notifications.',
+        'Completed the DEPI mobile development track with MCIT during the same '
+            'period.',
       ],
     ),
     Experience(
@@ -75,37 +121,49 @@ class CvData {
       role: 'Flutter Developer',
       period: 'Jan 2024 — May 2024',
       bullets: [
-        'Worked on two Flutter projects: Valencia (restaurant task management) and HR Rqmmyat (internal HR system).',
-        'Designed UI screens, fixed business logic, and connected API integrations to link Admin, Manager, and Staff workflows in both apps.',
-        'Built the full authentication flow for HR Rqmmyat from scratch and integrated the backend API for end-to-end session management.',
-        'Resolved a critical API data retrieval bug in Valencia that was blocking core functionality across all user roles.',
+        'Worked on two Flutter products: Valencia (restaurant task management) '
+            'and HR Rqmmyat (internal HR system).',
+        'Built the full authentication flow for HR Rqmmyat from scratch and '
+            'integrated the backend API for end-to-end session management.',
+        'Designed UI screens, corrected business logic, and connected API '
+            'integrations linking Admin, Manager, and Staff workflows across '
+            'both apps.',
+        'Diagnosed and fixed a critical data-retrieval failure in Valencia that '
+            'was blocking core functionality for every user role.',
       ],
     ),
   ];
 
-  // --- Volunteering ---------------------------------------------------------
-  /// Community / non-paid roles.
+  // ---------------------------------------------------------------------------
+  // Teaching & community
+  // ---------------------------------------------------------------------------
   static const List<Experience> volunteering = [
     Experience(
       company: 'GDSC Future Academy',
       role: 'Flutter Development Instructor',
       period: 'Jun 2021 — May 2023',
       bullets: [
-        'Led and mentored technical workshops and hackathons for students learning Flutter.',
-        'Designed and developed mobile-app projects used as teaching material across the chapter.',
-        'Enhanced students\' coding skills and deepened their understanding of cutting-edge mobile technologies.',
-        'Fostered a collaborative, inclusive community of learners within the Google Developer Student Clubs initiative.',
+        'Led technical workshops and hackathons for students learning Flutter, '
+            'across two academic years.',
+        'Designed and built mobile-app projects used as teaching material '
+            'across the chapter.',
+        'Mentored students through their first Flutter builds, from setup to a '
+            'working app.',
+        'Helped grow a collaborative community of learners within the Google '
+            'Developer Student Clubs initiative.',
       ],
     ),
   ];
 
-  // --- Projects -------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // Projects
+  // ---------------------------------------------------------------------------
   static const List<Project> projects = [
     Project(
-      name: 'AlMasry Integration App',
-      tagline: 'Cross-platform e-commerce management dashboard.',
-      category: 'E-commerce',
-      role: 'Solo developer',
+      name: 'AlMasry Integration',
+      tagline: 'Three marketplaces, one dashboard. Built solo, end to end.',
+      category: 'E-commerce · Internal tooling',
+      role: 'Sole developer — design to release',
       image: 'assets/images/almasryIntegration/01-dashboard-order-status.png',
       gallery: [
         'assets/images/almasryIntegration/02-sync-orders-erp.png',
@@ -119,28 +177,41 @@ class CvData {
         'assets/images/almasryIntegration/10-localization-ar-en.png',
       ],
       description:
-          'A cross-platform dashboard integrating three marketplaces — Jumia, '
-          'Noon, and Talabat — into a single app. Owned end-to-end as the '
-          'sole developer.',
+          'A cross-platform dashboard pulling Jumia, Noon, and Talabat into a '
+          'single operational view. Owned end to end as the only person on the '
+          'project — screen design through architecture, implementation, and '
+          'delivery.',
       tech: [
         'Flutter',
         'Bloc/Cubit',
-        'MVVM',
         'Clean Architecture',
+        'MVVM',
         'REST',
         'GraphQL',
+        'Dio',
+        'JWT',
       ],
       highlights: [
-        'Implemented secure JWT authentication with token refresh and a Dio REST layer with custom interceptors for connectivity, cookies, and automatic token renewal.',
-        'Developed order management, ERP inventory sync, stock updates, report generation, and competitor intelligence modules.',
-        'Implemented GraphQL-based product reviews with efficient pagination and a full GraphQL logging system.',
+        'Took the app from an empty repository to delivery alone: designed the '
+            'screens with AI-assisted tooling, set the architecture, built '
+            'every module, and shipped it.',
+        'Implemented JWT authentication with token refresh over a Dio REST '
+            'layer, with custom interceptors handling connectivity, cookies, '
+            'and automatic renewal.',
+        'Built order management, ERP inventory sync, stock updates, report '
+            'generation, and competitor intelligence as separate modules under '
+            'Clean Architecture.',
+        'Implemented GraphQL-backed product reviews with cursor pagination and '
+            'a full GraphQL logging layer for debugging in staging.',
+        'Shipped full Arabic and English localisation, including RTL layout '
+            'across every screen.',
       ],
     ),
     Project(
-      name: 'AlMasry Pharmacy App',
-      tagline: 'Live pharmacy app with real-time customer support.',
-      category: 'Healthcare',
-      role: 'Feature lead',
+      name: 'AlMasry Pharmacy',
+      tagline: 'Live pharmacy app serving 10,000+ users.',
+      category: 'E-commerce · Healthcare',
+      role: 'Feature developer',
       platforms: ProjectPlatforms(
         googlePlay: true,
         appStore: true,
@@ -158,21 +229,37 @@ class CvData {
         'assets/images/almasryPharmacy/07-categories-search.png',
       ],
       description:
-          'Consumer pharmacy app with smart search, integrated chatbot, and '
-          'real-time customer support via Chatwoot, shipped to both stores.',
-      tech: ['Flutter', 'Cubit', 'GraphQL', 'Chatwoot', 'WebView', 'HMAC'],
+          'A consumer pharmacy app with smart search, an integrated chatbot, '
+          'and real-time customer support — live on both stores with more than '
+          '10,000 active users.',
+      tech: [
+        'Flutter',
+        'Cubit',
+        'GraphQL',
+        'REST',
+        'HMAC',
+        'WebView',
+        'Chatwoot',
+      ],
       highlights: [
-        'Integrated Chatwoot real-time chat support via a WebView JS bridge with HMAC encryption, enabling live customer support.',
-        'Redesigned the login interface three times to optimise and perfect the authentication user experience.',
-        'Redesigned Smart Search and Chatbot UI with smooth animations; upgraded product filtering with multi-select capabilities via a new backend endpoint.',
-        'Developed the Payment Method Selection interface and led post-migration end-to-end production testing.',
+        'Migrated the checkout and ordering module from REST to GraphQL on a '
+            'live app, then led end-to-end production testing after the cutover.',
+        'Integrated Chatwoot real-time support through a WebView JS bridge with '
+            'HMAC-signed requests and user identifiers, so a session cannot be '
+            'spoofed from the client.',
+        'Built the payment method selection interface.',
+        'Rebuilt Smart Search and the chatbot UI with smooth animations, and '
+            'extended product filtering to multi-select against a new backend '
+            'endpoint.',
+        'Iterated on the login interface across three redesigns to reduce '
+            'drop-off during authentication.',
       ],
     ),
     Project(
       name: 'HR Mobic',
-      tagline: 'Enterprise HR app with role-based access.',
+      tagline: 'Enterprise HR with strict role separation.',
       category: 'Enterprise HR',
-      role: 'Feature lead',
+      role: 'Feature owner',
       platforms: ProjectPlatforms(
         googlePlay: true,
         appStore: true,
@@ -190,20 +277,25 @@ class CvData {
         'assets/images/hrMobic/07-leaves-requests.png',
       ],
       description:
-          'Internal HR app with strict role separation between Admin and '
-          'Employee, paginated task management, and instant OTA patching.',
-      tech: ['Flutter', 'Cubit', 'Shorebird OTA', 'REST API'],
+          'Internal HR app with hard separation between Admin and Employee '
+          'access, paginated task management, and instant OTA patching.',
+      tech: ['Flutter', 'Cubit', 'REST', 'Shorebird OTA'],
       highlights: [
-        'Implemented role-based security with strict Admin/Employee routing and access separation; built a paginated task filter handling 1,000+ records.',
-        'Integrated Shorebird OTA updates, reducing deployment time by 100% and enabling instant production patches.',
-        'Resolved an Apple App Store rejection by collaborating directly with Apple\'s review board.',
+        'Implemented role-based access with strict Admin/Employee routing, so '
+            'no employee-scoped session can reach an admin route.',
+        'Built a paginated task filter that stays responsive across 1,000+ '
+            'records.',
+        'Integrated Shorebird OTA, removing the store review cycle for hotfixes '
+            'and shipping patches in minutes.',
+        'Resolved an Apple App Store rejection by working directly with the '
+            'review board to unblock the release.',
       ],
     ),
     Project(
       name: 'FozDoc — Skin Analysis',
-      tagline: 'ML-powered skin analysis with adaptive UI.',
+      tagline: 'ML output turned into something people can act on.',
       category: 'Healthcare · ML',
-      role: 'Feature developer',
+      role: 'Feature owner',
       platforms: ProjectPlatforms(
         googlePlay: true,
         appStore: true,
@@ -220,44 +312,59 @@ class CvData {
         'assets/images/fozdoc/06-shop-products.png',
         'assets/images/fozdoc/07-settings.png',
       ],
-      description: 'A skin-analysis app that translates ML model output into '
-          'intuitive, personalised skincare recommendations.',
-      tech: ['Flutter', 'Cubit', 'ML Integration', 'REST API', 'Adaptive UI'],
+      description:
+          'A skin-analysis app that translates raw ML model output into a '
+          'personalised skincare routine a user can actually follow.',
+      tech: ['Flutter', 'Cubit', 'REST', 'ML integration', 'Adaptive UI'],
       highlights: [
-        'Designed and implemented the Skin Health Report screen, visualising API data with personalised skincare routines.',
-        'Integrated ML-powered skin analysis models with the Flutter frontend, translating complex model outputs into intuitive recommendations.',
+        'Designed and built the Skin Health Report screen, turning model output '
+            'into a readable routine rather than a score.',
+        'Integrated the ML skin-analysis pipeline with the Flutter frontend, '
+            'including the photo capture guide that improves input quality.',
+        'Built the personalisation onboarding flow covering skin basics, '
+            'lifestyle, and budget.',
       ],
     ),
     Project(
       name: 'Valencia',
-      tagline: 'Restaurant task management for staff hierarchies.',
+      tagline: 'Restaurant task management across staff hierarchies.',
       category: 'Operations',
       role: 'Contributor',
-      description: 'Task management for Admin, Manager, and Staff roles in a '
-          'restaurant operations setting.',
-      tech: ['Flutter', 'Bloc', 'REST API'],
+      description:
+          'Task management for Admin, Manager, and Staff roles in a restaurant '
+          'operations setting.',
+      tech: ['Flutter', 'Bloc', 'REST'],
       highlights: [
-        'Redesigned task management screens and corrected broken business logic to match actual app workflows.',
-        'Connected the API layer to correctly link Admin, Manager, and Staff roles and resolved a critical data retrieval bug blocking core functionality.',
+        'Rebuilt task management screens and corrected business logic that did '
+            'not match the real operational workflow.',
+        'Connected the API layer linking Admin, Manager, and Staff roles.',
+        'Diagnosed and fixed a critical data-retrieval bug that was blocking '
+            'core functionality for every role.',
       ],
     ),
     Project(
       name: 'HR Rqmmyat',
-      tagline: 'Internal HR system — authentication & sessions.',
+      tagline: 'Owned the authentication module end-to-end.',
       category: 'Enterprise HR',
       role: 'Contributor',
       description:
-          'Internal HR system where I owned the authentication module and '
-          'session handling for all user types.',
-      tech: ['Flutter', 'REST API', 'Authentication'],
+          'Internal HR system where I owned authentication and session handling '
+          'for all user types.',
+      tech: ['Flutter', 'REST', 'Authentication'],
       highlights: [
-        'Designed login and authentication screens from scratch and implemented the full login logic end-to-end.',
-        'Integrated the backend authentication API to handle user sessions correctly for all user types.',
+        'Designed the login screens and implemented the full authentication '
+            'logic from scratch.',
+        'Integrated the backend auth API to handle sessions correctly across '
+            'every user type.',
+        'Added widget tests for role-based screens to catch regressions before '
+            'they reached QA.',
       ],
     ),
   ];
 
-  // --- Skills ---------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // Skills
+  // ---------------------------------------------------------------------------
   static const List<SkillCategory> skillCategories = [
     SkillCategory(
       title: 'Languages',
@@ -266,27 +373,44 @@ class CvData {
     SkillCategory(
       title: 'Flutter & Mobile',
       skills: [
+        'Flutter',
+        'iOS & Android',
         'Flutter Animations',
         'Responsive UI',
         'Design Systems',
-        'Localization',
-        'iOS & Android',
+        'Localization & RTL',
       ],
     ),
     SkillCategory(
       title: 'Architecture',
       skills: [
         'Bloc / Cubit',
-        'MVVM',
         'Clean Architecture',
+        'MVVM',
         'SOLID',
         'GetIt',
         'GoRouter',
       ],
     ),
     SkillCategory(
+      title: 'Security & Auth',
+      skills: [
+        'Secure Coding',
+        'JWT & Token Refresh',
+        'OTP Verification',
+        'HMAC Request Signing',
+        'flutter_secure_storage',
+        'Biometric Auth (local_auth)',
+        'Role-Based Access',
+      ],
+    ),
+    SkillCategory(
+      title: 'Payments',
+      skills: ['Paymob', 'Stripe', 'Checkout Flows'],
+    ),
+    SkillCategory(
       title: 'APIs & Networking',
-      skills: ['REST', 'GraphQL', 'Dio', 'JWT', 'Postman'],
+      skills: ['REST', 'GraphQL', 'Dio', 'Interceptors', 'Pagination'],
     ),
     SkillCategory(
       title: 'Backend, Cloud & Storage',
@@ -298,34 +422,49 @@ class CvData {
         'SQLite',
         'SQFlite',
         'Hive',
-        'Shared Preferences',
+      ],
+    ),
+    SkillCategory(
+      title: 'Testing & Monitoring',
+      skills: [
+        'Unit Testing',
+        'Widget Testing',
+        'Firebase Crashlytics',
+        'Sentry',
+        'Firebase Analytics',
       ],
     ),
     SkillCategory(
       title: 'DevOps & Tools',
       skills: [
         'Git',
-        'Fastlane',
         'CI/CD',
+        'Fastlane',
+        'Build Flavors',
         'Shorebird OTA',
+        'App Store Connect',
+        'TestFlight',
+        'Google Play Console',
+        'Agile / Scrum',
         'Jira',
-        'Chatwoot',
-        'Google Maps',
-        'HMAC',
-        'Stripe',
       ],
     ),
   ];
 
-  // --- Education ------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // Education
+  // ---------------------------------------------------------------------------
+
   static const List<Education> education = [
     Education(
       institution: 'Digital Egypt Pioneers Initiative (DEPI) & MCIT',
       degree: 'Software Development — Mobile App Development',
       period: 'Jun 2024 — Oct 2024',
       notes: [
-        '6-month vocational program under the DEPI initiative, run in partnership with MCIT.',
-        'Equivalent to ITI (Information Technology Institute) in curriculum and focus, with a specialised track in mobile application development.',
+        'Six-month vocational programme under the DEPI initiative, run in '
+            'partnership with MCIT.',
+        'Comparable to the ITI programme in curriculum and intensity, with a '
+            'specialised mobile application development track.',
       ],
     ),
     Education(
@@ -333,23 +472,27 @@ class CvData {
       degree: 'Bachelor of Computer Science',
       period: 'Jan 2018 — Sep 2022',
       notes: [
-        'GPA: 3.0   ·   Graduation Project: Excellent (A)',
-        'Built a strong foundation in programming languages, algorithms, data structures, and software-engineering principles — alongside hands-on skills in quick learning and problem-solving.',
-        'Graduation Project: Dr. Brain — Patient-doctor app with voice/video calls, real-time chat, and ML-powered MRI tumor analysis.',
-        'Awards: 1st place at the university level, and 3rd place in the Ministry of Higher Education Science Clubs competition.',
+        'Graduation project graded Excellent (A).',
+        'Dr. Brain — a patient-doctor app with voice and video calls, real-time '
+            'chat, and ML-powered MRI tumour analysis.',
+        'First place at university level, and third place in the Ministry of '
+            'Higher Education Science Clubs competition.',
       ],
     ),
   ];
 
   static const List<String> certifications = [
     'Software Development — Mobile App Developer · DEPI & MCIT (2025)',
-    'First Time Employee & Business Ethics (2025)',
     'McKinsey Forward Program (2025)',
-    'Complete Flutter & Dart — Udemy (2023)',
-    'Flutter Bootcamp with Dart — Udemy (2023)',
+    'First Time Employee & Business Ethics (2025)',
+    'Complete Flutter & Dart · Udemy (2023)',
+    'Flutter Bootcamp with Dart · Udemy (2023)',
   ];
 
-  // --- Languages -----------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // Spoken languages
+  // ---------------------------------------------------------------------------
+
   static const List<({String name, String level})> spokenLanguages = [
     (name: 'Arabic', level: 'Native'),
     (name: 'English', level: 'Professional'),
