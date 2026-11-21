@@ -49,7 +49,7 @@ class _ProjectCardState extends State<ProjectCard> {
   bool _hover = false;
 
   void _openDetail() {
-    showDialog(
+    showDialog<void>(
       context: context,
       barrierColor: Colors.black.withValues(alpha: 0.6),
       builder: (_) =>
@@ -407,7 +407,7 @@ class _ProjectDetailDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: AppColors.inkSoft,
       insetPadding: context.responsive<EdgeInsets>(
-        sm: const EdgeInsets.all(12),
+        sm: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         md: const EdgeInsets.all(40),
       ),
       shape: RoundedRectangleBorder(
@@ -429,7 +429,7 @@ class _ProjectDetailDialog extends StatelessWidget {
                     image: project.image,
                     index: index,
                     fallbackLabel: project.category,
-                    height: 320,
+                    height: context.responsive<double>(sm: 200, md: 280, lg: 320),
                     borderRadius: BorderRadius.zero,
                   ),
                   Positioned(
@@ -751,7 +751,7 @@ class _ProjectGallery extends StatelessWidget {
   }
 
   void _openLightbox(BuildContext context, int initialIndex) {
-    showDialog(
+    showDialog<void>(
       context: context,
       barrierColor: Colors.black.withValues(alpha: 0.85),
       builder: (_) => _GalleryLightbox(
@@ -812,6 +812,7 @@ class _GalleryTileState extends State<_GalleryTile> {
               child: Image.asset(
                 widget.image,
                 fit: BoxFit.contain,
+                cacheWidth: 280,
                 errorBuilder: (_, __, ___) => const Center(
                   child: Icon(
                     PhosphorIconsRegular.imageBroken,
@@ -1093,6 +1094,7 @@ class _MiniThumb extends StatelessWidget {
           child: Image.asset(
             image,
             fit: BoxFit.cover,
+            cacheWidth: 52,
             errorBuilder: (_, __, ___) => const SizedBox.shrink(),
           ),
         ),

@@ -17,16 +17,27 @@ class ExperienceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // --- Timeline rail ------------------------------------------------
-          SizedBox(
-            width: 32,
-            child: Column(
-              children: [
-                Container(
+    return Stack(
+      children: [
+        // Connecting vertical line for timeline (if not the last item)
+        if (!isLast)
+          Positioned(
+            left: 15.5, // 32 / 2 - 0.5
+            top: 18,    // Below circle dot (6 + 12)
+            bottom: 0,
+            child: Container(
+              width: 1,
+              color: AppColors.stroke,
+            ),
+          ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // --- Timeline rail dot --------------------------------------------
+            SizedBox(
+              width: 32,
+              child: Center(
+                child: Container(
                   margin: const EdgeInsets.only(top: 6),
                   width: 12,
                   height: 12,
@@ -43,26 +54,18 @@ class ExperienceCard extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                 ),
-                if (!isLast)
-                  Expanded(
-                    child: Container(
-                      width: 1,
-                      margin: const EdgeInsets.only(top: 4),
-                      color: AppColors.stroke,
-                    ),
-                  ),
-              ],
+              ),
             ),
-          ),
-          const SizedBox(width: 18),
+            const SizedBox(width: 18),
 
-          // --- Content ------------------------------------------------------
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(bottom: isLast ? 0 : 22),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+            // --- Content ------------------------------------------------------
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(bottom: isLast ? 0 : 22),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
                   // --- Role (job title) — anchors the card ---------
                   Text(
                     experience.role,
@@ -166,6 +169,7 @@ class ExperienceCard extends StatelessWidget {
           ),
         ],
       ),
+      ],
     );
   }
 }

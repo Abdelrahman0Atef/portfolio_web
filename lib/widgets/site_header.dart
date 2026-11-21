@@ -123,6 +123,7 @@ class _LogoState extends State<_Logo> {
                   child: Image.asset(
                     'assets/images/MyPic/01-profile.jpeg',
                     fit: BoxFit.cover,
+                    cacheWidth: 68,
                     errorBuilder: (_, __, ___) => Container(
                       color: AppColors.accent,
                       alignment: Alignment.center,

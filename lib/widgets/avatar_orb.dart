@@ -68,19 +68,21 @@ class _AvatarOrbState extends State<AvatarOrb>
           ),
 
           // Slow-rotating dashed orbit ring
-          AnimatedBuilder(
-            animation: _controller,
-            builder: (_, __) {
-              return Transform.rotate(
-                angle: _controller.value * 2 * math.pi,
-                child: CustomPaint(
-                  size: Size(orbitSize - 4, orbitSize - 4),
-                  painter: _DashedOrbitPainter(
-                    color: AppColors.accent.withValues(alpha: 0.45),
+          RepaintBoundary(
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (_, __) {
+                return Transform.rotate(
+                  angle: _controller.value * 2 * math.pi,
+                  child: CustomPaint(
+                    size: Size(orbitSize - 4, orbitSize - 4),
+                    painter: _DashedOrbitPainter(
+                      color: AppColors.accent.withValues(alpha: 0.45),
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
 
           // Profile photo with thin accent ring
@@ -105,6 +107,7 @@ class _AvatarOrbState extends State<AvatarOrb>
               child: Image.asset(
                 widget.imagePath,
                 fit: BoxFit.cover,
+                cacheWidth: (widget.size * 2).toInt(),
                 // If the asset is missing for any reason, render a calm
                 // mono-colored placeholder rather than a broken-image icon.
                 errorBuilder: (_, __, ___) => Container(

@@ -15,15 +15,15 @@ class ExperienceSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContentColumn(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.responsive(sm: 32, md: 44, lg: 56),
+        padding: EdgeInsets.only(
+          bottom: context.responsive(sm: 32, md: 44, lg: 56),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RevealOnScroll(
-              revealKey: const ValueKey('exp_header'),
-              child: const SectionHeader(
+            const RevealOnScroll(
+              revealKey: ValueKey('exp_header'),
+              child: SectionHeader(
                 index: '02',
                 eyebrow: 'Experience',
                 title: 'Where I\'ve shipped.',
@@ -51,9 +51,9 @@ class ExperienceSection extends StatelessWidget {
 
                   // --- Volunteering subsection -----------------------
                   const SizedBox(height: 24),
-                  RevealOnScroll(
-                    revealKey: const ValueKey('vol_eyebrow'),
-                    child: const _VolunteeringEyebrow(),
+                  const RevealOnScroll(
+                    revealKey: ValueKey('vol_eyebrow'),
+                    child: _VolunteeringEyebrow(),
                   ),
                   const SizedBox(height: 20),
                   ...List.generate(CvData.volunteering.length, (i) {

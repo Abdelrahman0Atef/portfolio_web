@@ -67,8 +67,7 @@ class CvData {
     Experience(
       company: 'Croco IT',
       role: 'Mobile Developer (Flutter)',
-      period: 'Feb 2025 — Present',
-      isCurrent: true,
+      period: 'Feb 2025 — Oct 2026',
       bullets: [
         'Deliver features end-to-end across four production apps in e-commerce, '
             'healthcare, and enterprise HR — from architecture through App Store '
@@ -382,6 +381,7 @@ class CvData {
         'Reworked capture for a two-person flow — the practitioner frames the '
             'shot and triggers the shutter manually once it looks right, '
             'rather than the subject waiting on an automatic timer they '
+
             'cannot see.',
         'Enabled the rear camera alongside the front one, since a practitioner '
             'photographing a patient reaches for the rear camera every time. '
@@ -511,6 +511,7 @@ class CvData {
       skills: [
         'Unit Testing',
         'Widget Testing',
+        'Firebase Test Lab',
         'Firebase Crashlytics',
         'Sentry',
         'Firebase Analytics',
@@ -529,6 +530,17 @@ class CvData {
         'Google Play Console',
         'Agile / Scrum',
         'Jira',
+      ],
+    ),
+    SkillCategory(
+      title: 'AI-Assisted Development',
+      skills: [
+        'Claude Code',
+        'Cursor',
+        'OpenAI Codex',
+        'Prompt Engineering',
+        'AI-Driven Refactoring',
+        'Test Generation',
       ],
     ),
   ];

@@ -72,23 +72,17 @@ class ContactSection extends StatelessWidget {
       ),
     ];
 
-    // Always 2 columns on anything larger than a phone.
-    final cols = context.responsive<int>(sm: 1, md: 2, lg: 2, xl: 2);
-
     return ContentColumn(
       child: Padding(
-        padding: EdgeInsets.fromLTRB(
-          0,
-          context.responsive(sm: 32, md: 44, lg: 56),
-          0,
-          context.responsive(sm: 24, md: 32, lg: 40),
+        padding: EdgeInsets.only(
+          bottom: context.responsive(sm: 24, md: 32, lg: 40),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RevealOnScroll(
-              revealKey: const ValueKey('contact_header'),
-              child: const SectionHeader(
+            const RevealOnScroll(
+              revealKey: ValueKey('contact_header'),
+              child: SectionHeader(
                 index: '05',
                 eyebrow: 'Contact',
                 title: 'Let\'s build something.',
@@ -97,32 +91,32 @@ class ContactSection extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: entries.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: cols,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 10,
-                childAspectRatio: context.responsive<double>(
-                  sm: 3.4,
-                  md: 3.0,
-                  lg: 3.2,
-                  xl: 4.6,
-                ),
-              ),
-              itemBuilder: (_, i) {
-                final e = entries[i];
-                return RevealOnScroll(
-                  revealKey: ValueKey('contact_$i'),
-                  delay: Duration(milliseconds: (i % cols) * 80),
-                  child: ContactButton(
-                    icon: e.icon,
-                    label: e.label,
-                    value: e.value,
-                    onTap: () => _open(context, e.uri, e.label, e.value),
-                  ),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final cols = context.responsive<int>(sm: 1, md: 2, lg: 2, xl: 2);
+                const spacing = 10.0;
+                final cardWidth = cols == 1
+                    ? constraints.maxWidth
+                    : (constraints.maxWidth - spacing * (cols - 1)) / cols;
+                return Wrap(
+                  spacing: spacing,
+                  runSpacing: 8,
+                  children: [
+                    for (var i = 0; i < entries.length; i++)
+                      SizedBox(
+                        width: cardWidth,
+                        child: RevealOnScroll(
+                          revealKey: ValueKey('contact_$i'),
+                          delay: Duration(milliseconds: (i % cols) * 80),
+                          child: ContactButton(
+                            icon: entries[i].icon,
+                            label: entries[i].label,
+                            value: entries[i].value,
+                            onTap: () => _open(context, entries[i].uri, entries[i].label, entries[i].value),
+                          ),
+                        ),
+                      ),
+                  ],
                 );
               },
             ),
@@ -215,6 +209,7 @@ class _CalloutCard extends StatelessWidget {
 
 class _Footer extends StatelessWidget {
   const _Footer();
+  static final int _year = DateTime.now().year;
 
   @override
   Widget build(BuildContext context) {
@@ -231,7 +226,7 @@ class _Footer extends StatelessWidget {
             runSpacing: 12,
             children: [
               Text(
-                '© ${DateTime.now().year}  ·  ${CvData.name}',
+                '© $_year  ·  ${CvData.name}',
                 style: AppTheme.mono(
                   size: 11,
                   color: AppColors.textSecondary,

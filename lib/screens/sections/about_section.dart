@@ -16,15 +16,15 @@ class AboutSection extends StatelessWidget {
 
     return ContentColumn(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.responsive(sm: 32, md: 44, lg: 56),
+        padding: EdgeInsets.only(
+          bottom: context.responsive(sm: 32, md: 44, lg: 56),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RevealOnScroll(
-              revealKey: const ValueKey('about_header'),
-              child: const SectionHeader(
+            const RevealOnScroll(
+              revealKey: ValueKey('about_header'),
+              child: SectionHeader(
                 index: '01',
                 eyebrow: 'About',
                 title: 'Three years of\nshipping production Flutter.',

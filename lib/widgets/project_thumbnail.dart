@@ -79,6 +79,7 @@ class _ImageArt extends StatelessWidget {
           child: Image.asset(
             image,
             fit: BoxFit.contain,
+            cacheWidth: 800,
             errorBuilder: (_, __, ___) =>
                 _PlaceholderArt(index: index, fallbackLabel: 'PROJECT'),
           ),

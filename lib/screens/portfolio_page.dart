@@ -1,3 +1,5 @@
+import 'dart:ui' show PointerDeviceKind;
+
 import 'package:flutter/material.dart';
 
 import '../core/sections.dart';
@@ -77,93 +79,96 @@ class _PortfolioPageState extends State<PortfolioPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      endDrawer: MobileNavDrawer(
-        sections: _sections,
-        scrollController: _scrollController,
-      ),
-      body: GridBackdrop(
-        child: Scrollbar(
-          controller: _scrollController,
-          thumbVisibility: true,
-          thickness: 6,
-          radius: const Radius.circular(3),
-          child: CustomScrollView(
+    return ScrollConfiguration(
+      behavior: _WebScrollBehavior(),
+      child: Scaffold(
+        key: _scaffoldKey,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        endDrawer: MobileNavDrawer(
+          sections: _sections,
+          scrollController: _scrollController,
+        ),
+        body: GridBackdrop(
+          child: Scrollbar(
             controller: _scrollController,
-            slivers: [
-              // --- Sticky header ----------------------------------------
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: _StickyHeaderDelegate(
-                  child: SiteHeader(
-                    sections: _sections,
-                    scrollController: _scrollController,
-                    activeSection: _activeSection,
-                    onMenuTap: () =>
-                        _scaffoldKey.currentState?.openEndDrawer(),
-                  ),
-                ),
-              ),
-
-              // --- Hero -------------------------------------------------
-              SliverToBoxAdapter(
-                child: KeyedSubtree(
-                  key: _section(SectionId.home).key,
-                  child: HeroSection(
-                    onSeeWork: () => scrollToSection(
-                      _section(SectionId.projects).key,
-                      controller: _scrollController,
-                    ),
-                    onSeeContact: () => scrollToSection(
-                      _section(SectionId.contact).key,
-                      controller: _scrollController,
+            thumbVisibility: true,
+            thickness: 6,
+            radius: const Radius.circular(3),
+            child: CustomScrollView(
+              controller: _scrollController,
+              slivers: [
+                // --- Sticky header ----------------------------------------
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _StickyHeaderDelegate(
+                    child: SiteHeader(
+                      sections: _sections,
+                      scrollController: _scrollController,
+                      activeSection: _activeSection,
+                      onMenuTap: () =>
+                          _scaffoldKey.currentState?.openEndDrawer(),
                     ),
                   ),
                 ),
-              ),
 
-              // --- About ------------------------------------------------
-              SliverToBoxAdapter(
-                child: KeyedSubtree(
-                  key: _section(SectionId.about).key,
-                  child: const AboutSection(),
+                // --- Hero -------------------------------------------------
+                SliverToBoxAdapter(
+                  child: KeyedSubtree(
+                    key: _section(SectionId.home).key,
+                    child: HeroSection(
+                      onSeeWork: () => scrollToSection(
+                        _section(SectionId.projects).key,
+                        controller: _scrollController,
+                      ),
+                      onSeeContact: () => scrollToSection(
+                        _section(SectionId.contact).key,
+                        controller: _scrollController,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
 
-              // --- Experience ------------------------------------------
-              SliverToBoxAdapter(
-                child: KeyedSubtree(
-                  key: _section(SectionId.experience).key,
-                  child: const ExperienceSection(),
+                // --- About ------------------------------------------------
+                SliverToBoxAdapter(
+                  child: KeyedSubtree(
+                    key: _section(SectionId.about).key,
+                    child: const AboutSection(),
+                  ),
                 ),
-              ),
 
-              // --- Projects --------------------------------------------
-              SliverToBoxAdapter(
-                child: KeyedSubtree(
-                  key: _section(SectionId.projects).key,
-                  child: const ProjectsSection(),
+                // --- Experience ------------------------------------------
+                SliverToBoxAdapter(
+                  child: KeyedSubtree(
+                    key: _section(SectionId.experience).key,
+                    child: const ExperienceSection(),
+                  ),
                 ),
-              ),
 
-              // --- Skills -----------------------------------------------
-              SliverToBoxAdapter(
-                child: KeyedSubtree(
-                  key: _section(SectionId.skills).key,
-                  child: const SkillsSection(),
+                // --- Projects --------------------------------------------
+                SliverToBoxAdapter(
+                  child: KeyedSubtree(
+                    key: _section(SectionId.projects).key,
+                    child: const ProjectsSection(),
+                  ),
                 ),
-              ),
 
-              // --- Contact + Footer ------------------------------------
-              SliverToBoxAdapter(
-                child: KeyedSubtree(
-                  key: _section(SectionId.contact).key,
-                  child: const ContactSection(),
+                // --- Skills -----------------------------------------------
+                SliverToBoxAdapter(
+                  child: KeyedSubtree(
+                    key: _section(SectionId.skills).key,
+                    child: const SkillsSection(),
+                  ),
                 ),
-              ),
-            ],
+
+                // --- Contact + Footer ------------------------------------
+                SliverToBoxAdapter(
+                  child: KeyedSubtree(
+                    key: _section(SectionId.contact).key,
+                    child: const ContactSection(),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -190,4 +195,15 @@ class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant _StickyHeaderDelegate oldDelegate) =>
       oldDelegate.child != child;
+}
+
+/// Enables smooth scrolling and trackpad on web without interfering with mouse selection or scrollbar thumb drag.
+class _WebScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.trackpad,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.invertedStylus,
+      };
 }

@@ -28,8 +28,9 @@ class HeroSection extends StatelessWidget {
 
     return ContentColumn(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.responsive(sm: 32, md: 44, lg: 56),
+        padding: EdgeInsets.only(
+          top: context.responsive(sm: 24, md: 32, lg: 40),
+          bottom: context.responsive(sm: 32, md: 44, lg: 56),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,10 +160,10 @@ class _NameBlock extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Wrap(
+        const Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: const [
+          children: [
             TagChip(label: CvData.role, accent: true, dense: true),
             TagChip(label: CvData.location, dense: true),
           ],

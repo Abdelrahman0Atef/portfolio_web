@@ -19,15 +19,15 @@ class SkillsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContentColumn(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.responsive(sm: 32, md: 44, lg: 56),
+        padding: EdgeInsets.only(
+          bottom: context.responsive(sm: 32, md: 44, lg: 56),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RevealOnScroll(
-              revealKey: const ValueKey('skills_header'),
-              child: const SectionHeader(
+            const RevealOnScroll(
+              revealKey: ValueKey('skills_header'),
+              child: SectionHeader(
                 index: '04',
                 eyebrow: 'Skills',
                 title: 'Technical stack.',
@@ -246,10 +246,10 @@ class _EducationStack extends StatelessWidget {
             ),
         const SizedBox(height: 16),
         // --- Certifications + Languages block ---------------------------
-        RevealOnScroll(
-          revealKey: const ValueKey('certs'),
-          delay: const Duration(milliseconds: 240),
-          child: const _CertsLanguagesBlock(),
+        const RevealOnScroll(
+          revealKey: ValueKey('certs'),
+          delay: Duration(milliseconds: 240),
+          child: _CertsLanguagesBlock(),
         ),
       ],
     );

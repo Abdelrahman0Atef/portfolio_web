@@ -22,9 +22,11 @@ class GridBackdrop extends StatelessWidget {
       children: [
         Positioned.fill(
           child: IgnorePointer(
-            child: CustomPaint(
-              painter: _DotGridPainter(
-                color: AppColors.textSecondary.withValues(alpha: opacity),
+            child: RepaintBoundary(
+              child: CustomPaint(
+                painter: _DotGridPainter(
+                  color: AppColors.textSecondary.withValues(alpha: opacity),
+                ),
               ),
             ),
           ),
