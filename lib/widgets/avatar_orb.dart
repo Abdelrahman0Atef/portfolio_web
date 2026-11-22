@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
+import '../core/image_utils.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/app_theme.dart';
 
@@ -107,7 +108,7 @@ class _AvatarOrbState extends State<AvatarOrb>
               child: Image.asset(
                 widget.imagePath,
                 fit: BoxFit.cover,
-                cacheWidth: (widget.size * 2).toInt(),
+                cacheWidth: webSafeCacheWidth((widget.size * 2).toInt()),
                 // If the asset is missing for any reason, render a calm
                 // mono-colored placeholder rather than a broken-image icon.
                 errorBuilder: (_, __, ___) => Container(

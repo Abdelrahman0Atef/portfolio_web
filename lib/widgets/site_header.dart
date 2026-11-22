@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
+import '../core/image_utils.dart';
 import '../core/responsive.dart';
 import '../core/sections.dart';
 import '../core/theme/app_colors.dart';
@@ -123,7 +124,7 @@ class _LogoState extends State<_Logo> {
                   child: Image.asset(
                     'assets/images/MyPic/01-profile.jpeg',
                     fit: BoxFit.cover,
-                    cacheWidth: 68,
+                    cacheWidth: webSafeCacheWidth(68),
                     errorBuilder: (_, __, ___) => Container(
                       color: AppColors.accent,
                       alignment: Alignment.center,

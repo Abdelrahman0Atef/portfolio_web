@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
+import '../core/image_utils.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/app_theme.dart';
 
@@ -79,7 +80,7 @@ class _ImageArt extends StatelessWidget {
           child: Image.asset(
             image,
             fit: BoxFit.contain,
-            cacheWidth: 800,
+            cacheWidth: webSafeCacheWidth(800),
             errorBuilder: (_, __, ___) =>
                 _PlaceholderArt(index: index, fallbackLabel: 'PROJECT'),
           ),

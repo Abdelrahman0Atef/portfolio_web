@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../core/image_utils.dart';
 import '../core/responsive.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/app_theme.dart';
@@ -812,7 +813,7 @@ class _GalleryTileState extends State<_GalleryTile> {
               child: Image.asset(
                 widget.image,
                 fit: BoxFit.contain,
-                cacheWidth: 280,
+                cacheWidth: webSafeCacheWidth(280),
                 errorBuilder: (_, __, ___) => const Center(
                   child: Icon(
                     PhosphorIconsRegular.imageBroken,
@@ -1094,7 +1095,7 @@ class _MiniThumb extends StatelessWidget {
           child: Image.asset(
             image,
             fit: BoxFit.cover,
-            cacheWidth: 52,
+            cacheWidth: webSafeCacheWidth(52),
             errorBuilder: (_, __, ___) => const SizedBox.shrink(),
           ),
         ),
